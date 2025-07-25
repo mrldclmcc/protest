@@ -5,249 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Protest Letter Generator</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        .form-section {
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 8px;
-        }
-        .output-section {
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 8px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #555;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-        input:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-        button {
-            padding: 12px 24px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        .btn-generate {
-            background-color: #1e4a72;
-            color: white;
-        }
-        .btn-generate:hover {
-            background-color: #153954;
-        }
-        .btn-clear {
-            background-color: #6c757d;
-            color: white;
-        }
-        .btn-clear:hover {
-            background-color: #545b62;
-        }
-        .btn-copy {
-            background-color: #f47421;
-            color: white;
-        }
-        .btn-copy:hover {
-            background-color: #d85f1a;
-        }
-        #letterOutput {
-            width: 100%;
-            min-height: 400px;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Times New Roman', serif;
-            font-size: 14px;
-            line-height: 1.6;
-            background: white;
-            box-sizing: border-box;
-        }
-        .output-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .placeholder {
-            color: #999;
-            font-style: italic;
-        }
-        .letter-paragraph {
-            margin-bottom: 16px;
-        }
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        body{font-family:Arial,sans-serif;max-width:1200px;margin:0 auto;padding:20px;background:#f5f5f5}
+        .container{background:white;padding:30px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+        h1{text-align:center;color:#333;margin-bottom:30px}
+        .grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+        .form-section,.output-section{padding:20px;background:#f9f9f9;border-radius:8px}
+        label{display:block;font-weight:bold;margin-bottom:5px;color:#555}
+        input,select{width:100%;padding:10px;margin-bottom:15px;border:2px solid #ddd;border-radius:5px;font-size:14px;box-sizing:border-box}
+        input:focus,select:focus{border-color:#007bff;outline:none}
+        button{padding:12px 24px;margin:5px;border:none;border-radius:5px;cursor:pointer;font-size:14px;font-weight:bold}
+        .btn-generate{background:#1e4a72;color:white}
+        .btn-generate:hover{background:#153954}
+        .btn-clear{background:#6c757d;color:white}
+        .btn-clear:hover{background:#545b62}
+        .btn-copy{background:#f47421;color:white}
+        .btn-copy:hover{background:#d85f1a}
+        #letterOutput{width:100%;min-height:400px;padding:15px;border:2px solid #ddd;border-radius:5px;font-family:'Times New Roman',serif;font-size:14px;line-height:1.6;background:white;box-sizing:border-box}
+        .output-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+        .placeholder{color:#999;font-style:italic}
+        /* .letter-paragraph rule removed—using <p> now */
+        @media(max-width:768px){.grid{grid-template-columns:1fr}}
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Protest Letter Generator</h1>
+<div class="container">
+    <h1>Protest Letter Generator</h1>
 
-        <div class="grid">
-            <div class="form-section">
-                <h2>Project Information</h2>
+    <div class="grid">
+        <!-- FORM SECTION -->
+        <div class="form-section">
+            <h2>Project Information</h2>
 
-                <label for="recipient">Recipient Name:</label>
-                <input type="text" id="recipient" value="Mr. Hubka">
+            <label for="recipient">Recipient Name:</label>
+            <input type="text" id="recipient" placeholder="Mr. Brian Hubka">
 
-                <label for="projectName">Project Name:</label>
-                <input type="text" id="projectName" placeholder="Prairie Lakes Community Center Fitness Center Expansion">
+            <label for="recipientTitle">Recipient Title / Position:</label>
+            <input type="text" id="recipientTitle" placeholder="e.g., Executive Director">
 
-                <label for="contractorName">Contractor Name:</label>
-                <input type="text" id="contractorName" placeholder="Kandu Construction Inc.">
+            <label for="recipientEmail">Recipient Email Address:</label>
+            <input type="text" id="recipientEmail" placeholder="e.g., bhubka@example.com">
 
-                <label for="violationDate">Violation Date:</label>
-                <input type="text" id="violationDate" placeholder="November 2, 2022">
+            <label for="publicBody">Public Body / District:</label>
+            <input type="text" id="publicBody" placeholder="Des Plaines Park District">
 
-                <label for="idolCase">IDOL Case Number:</label>
-                <input type="text" id="idolCase" placeholder="2021-PW-RDW09-2989">
+            <label for="publicBodyAddress">Public Body Address:</label>
+            <input type="text" id="publicBodyAddress" placeholder="e.g., 123 Main St., Des Plaines, IL 60016">
 
-                <label for="publicBody">Public Body/District:</label>
-                <input type="text" id="publicBody" placeholder="Des Plaines Park District">
+            <label for="projectName">Project Name:</label>
+            <input type="text" id="projectName" placeholder="Prairie Lakes Community Center Fitness Center Expansion">
 
-                <div>
-                    <button class="btn-generate" onclick="generateLetter()">Generate Letter</button>
-                    <button class="btn-clear" onclick="clearForm()">Clear Form</button>
-                </div>
-            </div>
+            <label for="contractorName">Contractor Name:</label>
+            <input type="text" id="contractorName" placeholder="Kandu Construction Inc.">
 
-            <div class="output-section">
-                <div class="output-header">
-                    <h2>Generated Letter</h2>
-                    <button class="btn-copy" id="copyBtn" onclick="copyLetter()" style="display: none;">Copy Letter</button>
-                </div>
+            <label for="violationDate">Violation Date:</label>
+            <input type="text" id="violationDate" placeholder="November 2, 2022">
 
-                <div id="letterOutput" contenteditable="false" class="placeholder" style="border: 2px solid #ddd; border-radius: 5px; padding: 15px; min-height: 400px; background: white; font-family: 'Times New Roman', serif; font-size: 14px; line-height: 1.6; overflow-y: auto;">Fill out the form and click "Generate Letter" to create your protest letter.</div>
+            <label for="noticeType">Notice Type:</label>
+            <input type="text" id="noticeType" value="Notice of First Violation">
+
+            <label for="violationType">IDOL Violation Type:</label>
+            <select id="violationType">
+                <option value="failing to pay proper prevailing wage rates on a previous public project" selected>failing to pay proper prevailing wage rates on a previous public project</option>
+                <option value="failing to file required certified payroll records with the Illinois Department of Labor">failing to file required certified payroll records with the Illinois Department of Labor</option>
+                <option value="retaliating against employees who reported prevailing wage violations or filed complaints">retaliating against employees who reported prevailing wage violations or filed complaints</option>
+                <option value="failing to post prevailing wage rates at the job site as required">failing to post prevailing wage rates at the job site as required</option>
+                <option value="committing repeat violations of the Illinois Prevailing Wage Act within a five-year period">committing repeat violations of the Illinois Prevailing Wage Act within a five-year period</option>
+            </select>
+
+            <label for="idolCase">IDOL Case Number:</label>
+            <input type="text" id="idolCase" placeholder="2021-PW-RDW09-2989">
+
+            <div>
+                <button class="btn-generate" onclick="generateLetter()">Generate Letter</button>
+                <button class="btn-clear" onclick="clearForm()">Clear Form</button>
             </div>
         </div>
+
+        <!-- OUTPUT SECTION -->
+        <div class="output-section">
+            <div class="output-header">
+                <h2>Generated Letter</h2>
+                <button class="btn-copy" id="copyBtn" onclick="copyLetter()" style="display:none;">Copy Letter</button>
+            </div>
+            <div id="letterOutput" class="placeholder">Fill out the form and click "Generate Letter" to create your protest letter.</div>
+        </div>
     </div>
+</div>
 
-    <script>
-        function generateLetter() {
-            const recipient = document.getElementById('recipient').value || 'Mr. Hubka';
-            const projectName = document.getElementById('projectName').value;
-            const contractorName = document.getElementById('contractorName').value;
-            const violationDate = document.getElementById('violationDate').value;
-            const idolCase = document.getElementById('idolCase').value;
-            const publicBody = document.getElementById('publicBody').value;
+<script>
+    function generateLetter() {
+        const recipient        = document.getElementById('recipient').value || 'Mr. Brian Hubka';
+        const recipientTitle   = document.getElementById('recipientTitle').value;
+        const recipientEmail   = document.getElementById('recipientEmail').value;
+        const publicBody       = document.getElementById('publicBody').value;
+        const publicBodyAddress= document.getElementById('publicBodyAddress').value;
+        const projectName      = document.getElementById('projectName').value;
+        const contractorName   = document.getElementById('contractorName').value;
+        const violationDate    = document.getElementById('violationDate').value;
+        const noticeType       = document.getElementById('noticeType').value;
+        const violationType    = document.getElementById('violationType').value;
+        const idolCase         = document.getElementById('idolCase').value;
 
-            if (!projectName || !contractorName || !violationDate || !idolCase || !publicBody) {
-                alert('Please fill in all required fields to generate the letter.');
-                return;
-            }
-
-            // Create structured HTML with proper paragraph breaks
-            const letterHTML = `
-                <div class="letter-paragraph">Dear <strong>${recipient}</strong>:</div>
-
-                <div class="letter-paragraph">The Chicago Laborers' District Council Labor Management Cooperation Committee (LMCC) has examined the bid tabulations from the recent opening for the <strong>${projectName}</strong>. We believe you should review specific concerns about <strong>${contractorName}</strong>, which submitted the apparent low bid.</div>
-
-                <div class="letter-paragraph">Our review uncovered a Notice of First Violation dated <strong>${violationDate}</strong>, issued by the Illinois Department of Labor (IDOL Case # <strong>${idolCase}</strong>). This notice confirms that <strong>${contractorName}</strong> violated the Illinois Prevailing Wage Act by failing to pay proper prevailing wage rates on a previous public project.</div>
-
-                <div class="letter-paragraph">The LMCC exists to support, promote, and encourage fair contracting practices in public construction. Illinois law frequently requires public construction contracts to go to the lowest responsible bidder. Given the documented wage violation, the <strong>${publicBody}</strong> has solid grounds to examine these facts before awarding the <strong>${projectName}</strong> project. The district may reasonably determine that this contractor lacks responsibility.</div>
-
-                <div class="letter-paragraph">We recommend the <strong>${publicBody}</strong> consider awarding this project to the next lowest responsible bidder instead.</div>
-            `;
-
-            const output = document.getElementById('letterOutput');
-            output.innerHTML = letterHTML;
-            output.classList.remove('placeholder');
-            document.getElementById('copyBtn').style.display = 'inline-block';
+        if (!recipientTitle || !recipientEmail || !publicBody || !publicBodyAddress || !projectName || !contractorName || !violationDate || !idolCase) {
+            alert('Please fill in all required fields to generate the letter.');
+            return;
         }
 
-        function copyLetter() {
-            const output = document.getElementById('letterOutput');
+        const letterHTML = `
+            <p>${recipient}<br>${recipientTitle}<br>${publicBody}<br>${publicBodyAddress}</p>
+            <p>Sent Via Electronic Mail to: ${recipientEmail} Only</p>
+            <p>Subject: Regarding the ${projectName} Bid</p>
 
-            try {
-                // Use the same method as manual selection - select the content and copy
-                const range = document.createRange();
-                range.selectNodeContents(output);
-                const selection = window.getSelection();
-                selection.removeAllRanges();
-                selection.addRange(range);
+            <p>Dear ${recipient}:</p>
 
-                // Copy using the browser's native copy command
-                const successful = document.execCommand('copy');
+            <p>The Chicago Laborers' District Council Labor Management Cooperation Committee (LMCC) has examined the bid tabulations from the recent opening for the <strong>${projectName}</strong>. We believe you should review specific concerns about <strong>${contractorName}</strong>, which submitted the apparent low bid.</p>
 
-                // Clear the selection
-                selection.removeAllRanges();
+            <p>Our review uncovered a ${noticeType} dated <strong>${violationDate}</strong>, issued by the Illinois Department of Labor (IDOL Case # <strong>${idolCase}</strong>). This notice confirms that <strong>${contractorName}</strong> violated the Illinois Prevailing Wage Act by <strong>${violationType}</strong>.</p>
 
-                if (successful) {
-                    showCopySuccess();
-                } else {
-                    throw new Error('Copy command failed');
-                }
-            } catch (err) {
-                // Fallback - manual copy instruction
-                alert('Please manually select all the text in the letter box and copy it using Ctrl+C (or Cmd+C on Mac)');
-            }
+            <p>The LMCC exists to support, promote, and encourage fair contracting practices in public construction. Illinois law frequently requires public construction contracts to go to the lowest responsible bidder. Given the documented wage violation, the <strong>${publicBody}</strong> has solid grounds to examine these facts before awarding the <strong>${projectName}</strong> project. The district may reasonably determine that this contractor lacks responsibility.</p>
+
+            <p>We recommend the <strong>${publicBody}</strong> consider awarding this project to the next lowest responsible bidder instead.</p>
+
+            <p>Sincerely,<br><br></p>
+        `;
+
+        const output = document.getElementById('letterOutput');
+        output.innerHTML = letterHTML;
+        output.classList.remove('placeholder');
+        document.getElementById('copyBtn').style.display = 'inline-block';
+    }
+
+    function copyLetter() {
+        const output = document.getElementById('letterOutput');
+        try {
+            const range = document.createRange();
+            range.selectNodeContents(output);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            const ok = document.execCommand('copy');
+            sel.removeAllRanges();
+            if (ok) showCopySuccess();
+            else throw new Error('copy failed');
+        } catch (e) {
+            alert('Please manually select all text and copy with Ctrl+C / Cmd+C.');
         }
+    }
 
-        function showCopySuccess() {
-            const copyBtn = document.getElementById('copyBtn');
-            const originalText = copyBtn.textContent;
-            copyBtn.textContent = 'Copied!';
-            copyBtn.style.backgroundColor = '#155724';
+    function showCopySuccess() {
+        const btn = document.getElementById('copyBtn');
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.style.backgroundColor = '#155724';
+        setTimeout(() => { btn.textContent = orig; btn.style.backgroundColor = '#f47421'; }, 2000);
+    }
 
-            setTimeout(() => {
-                copyBtn.textContent = originalText;
-                copyBtn.style.backgroundColor = '#f47421';
-            }, 2000);
-        }
-
-        function clearForm() {
-            document.getElementById('recipient').value = 'Mr. Hubka';
-            document.getElementById('projectName').value = '';
-            document.getElementById('contractorName').value = '';
-            document.getElementById('violationDate').value = '';
-            document.getElementById('idolCase').value = '';
-            document.getElementById('publicBody').value = '';
-
-            const output = document.getElementById('letterOutput');
-            output.innerHTML = 'Fill out the form and click "Generate Letter" to create your protest letter.';
-            output.classList.add('placeholder');
-            document.getElementById('copyBtn').style.display = 'none';
-        }
-    </script>
+    function clearForm() {
+        ['recipient','recipientTitle','recipientEmail','publicBody','publicBodyAddress','projectName','contractorName','violationDate','idolCase']
+            .forEach(id => document.getElementById(id).value = '');
+        document.getElementById('noticeType').value = 'Notice of First Violation';
+        document.getElementById('violationType').selectedIndex = 0;
+        const out = document.getElementById('letterOutput');
+        out.innerHTML = 'Fill out the form and click "Generate Letter" to create your protest letter.';
+        out.classList.add('placeholder');
+        document.getElementById('copyBtn').style.display = 'none';
+    }
+</script>
 </body>
 </html>
